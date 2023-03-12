@@ -1,0 +1,13 @@
+current directory: /Users/jamalalalami/MyProjects/chatwoot-mobile-app-1.8.0/vendor/bundle/ruby/2.7.0/gems/json-2.6.2/ext/json
+/Users/jamalalalami/.rvm/rubies/ruby-2.7.5/bin/ruby -I /Users/jamalalalami/.rvm/rubies/ruby-2.7.5/lib/ruby/2.7.0 -r ./siteconf20230312-42797-1o4rjxr.rb extconf.rb
+creating Makefile
+
+current directory: /Users/jamalalalami/MyProjects/chatwoot-mobile-app-1.8.0/vendor/bundle/ruby/2.7.0/gems/json-2.6.2/ext/json
+make "DESTDIR=" clean
+
+current directory: /Users/jamalalalami/MyProjects/chatwoot-mobile-app-1.8.0/vendor/bundle/ruby/2.7.0/gems/json-2.6.2/ext/json
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+current directory: /Users/jamalalalami/MyProjects/chatwoot-mobile-app-1.8.0/vendor/bundle/ruby/2.7.0/gems/json-2.6.2/ext/json
+make "DESTDIR=" install

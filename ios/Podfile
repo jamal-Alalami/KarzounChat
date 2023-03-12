@@ -4,7 +4,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 platform :ios, '12.4'
 install! 'cocoapods', :deterministic_uuids => false
 
-target 'Chatwoot' do
+target 'KarzounChat' do
   pod 'FirebaseCore', :modular_headers => true
   pod 'GoogleUtilities', :modular_headers => true;
 
@@ -29,7 +29,7 @@ target 'Chatwoot' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'ChatwootTests' do
+  target 'KarzounChatTests' do
     inherit! :complete
     # Pods for testing
   end
