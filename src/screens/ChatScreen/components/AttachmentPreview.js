@@ -59,7 +59,7 @@ const AttachmentPreview = ({ attachmentDetails, eva: { style, theme }, onRemoveA
       <CustomText style={style.name}>
         {fileName.length < 36 ? `${fileName}` : `...${fileName.substr(fileName.length - 15)}`}
       </CustomText>
-      <CustomText style={style.name}>{formattedFileSize}</CustomText>
+      <CustomText style={style.name}>{formattedFileSize ?? ''}</CustomText>
       <Icon
         name="close-outline"
         height={24}

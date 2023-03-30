@@ -1,5 +1,5 @@
-import React, { useRef, Fragment } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useRef, Fragment, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { SafeAreaView, KeyboardAvoidingView, Platform, Linking } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
@@ -35,7 +35,7 @@ import { findConversationLinkFromPush } from './helpers/PushHelper';
 
 import { selectLoggedIn } from 'reducer/authSlice';
 import { selectUrlSet, selectInstallationUrl, selectLocale } from 'reducer/settingsSlice';
-
+import { actions as settingsActions } from 'reducer/settingsSlice';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -83,6 +83,8 @@ messaging().setBackgroundMessageHandler(async remoteMessage => {});
 const App = ({ eva: { style } }) => {
   // TODO: Lets use light theme for now, add dark theme later
   const theme = LightTheme;
+  const dispatch = useDispatch();
+  const [isReady, setIsReady] = useState(false);
 
   const routerReference = useNavigationContainerRef();
 
@@ -94,7 +96,6 @@ const App = ({ eva: { style } }) => {
   const isUrlSet = useSelector(selectUrlSet);
   const installationUrl = useSelector(selectInstallationUrl);
   const locale = useSelector(selectLocale);
-
   const linking = {
     prefixes: [installationUrl],
     config: {
@@ -155,6 +156,18 @@ const App = ({ eva: { style } }) => {
 
   i18n.locale = locale;
 
+  useEffect(() => {
+    dispatch(settingsActions.setInstallationUrl({ url: 'https://app.karzoun.chat' }));
+  }, []);
+
+  useEffect(() => {
+    if (isUrlSet && isReady) {
+      setTimeout(() => {
+        RNBootSplash.hide({ fade: true });
+      }, 200);
+    }
+  }, [isReady, isUrlSet]);
+
   return (
     <KeyboardAvoidingView
       style={style.container}
@@ -166,7 +179,7 @@ const App = ({ eva: { style } }) => {
           ref={navigationRef}
           onReady={() => {
             routeNameRef.current = navigationRef.current.getCurrentRoute().name;
-            RNBootSplash.hide({ fade: true });
+            setIsReady(true);
           }}
           onStateChange={async () => {
             const previousRouteName = routeNameRef.current;

@@ -28,14 +28,7 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>applinks:app.chatwoot.com</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-			</dict>
-			<key>applinks:staging.chatwoot.com</key>
+			<key>applinks:app.karzoun.chat</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
@@ -51,6 +44,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>This allows us to capture a photo and send it as an attachment in the conversation</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app would like to record your voice for chat</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This allows us to select a photo from gallery and send it as an attachment in the conversation</string>
 	<key>UIAppFonts</key>

@@ -52,25 +52,29 @@ const Attachment = ({ conversationId, eva: { style, theme }, onSelectAttachment 
       }
     });
   };
-  const openDocument = async () => {
+  const openDocument = async (isVideo = false) => {
     try {
-      const res = await DocumentPicker.pick({
-        type: [
-          DocumentPicker.types.allFiles,
-          DocumentPicker.types.images,
-          DocumentPicker.types.plainText,
-          DocumentPicker.types.audio,
-          DocumentPicker.types.pdf,
-          DocumentPicker.types.zip,
-          DocumentPicker.types.csv,
-          DocumentPicker.types.doc,
-          DocumentPicker.types.docx,
-          DocumentPicker.types.ppt,
-          DocumentPicker.types.pptx,
-          DocumentPicker.types.xls,
-          DocumentPicker.types.xlsx,
-        ],
-      });
+      const res = await DocumentPicker.pick(
+        isVideo
+          ? { type: [DocumentPicker.types.video] }
+          : {
+              type: [
+                DocumentPicker.types.allFiles,
+                DocumentPicker.types.images,
+                DocumentPicker.types.plainText,
+                DocumentPicker.types.audio,
+                DocumentPicker.types.pdf,
+                DocumentPicker.types.zip,
+                DocumentPicker.types.csv,
+                DocumentPicker.types.doc,
+                DocumentPicker.types.docx,
+                DocumentPicker.types.ppt,
+                DocumentPicker.types.pptx,
+                DocumentPicker.types.xls,
+                DocumentPicker.types.xlsx,
+              ],
+            },
+      );
       const attachment = { uri: res.uri, type: res.type, fileSize: res.size, fileName: res.name };
       onSelectAttachment({ attachment });
     } catch (err) {
@@ -91,6 +95,9 @@ const Attachment = ({ conversationId, eva: { style, theme }, onSelectAttachment 
       }
       if (itemType === 'upload_file') {
         openDocument();
+      }
+      if (itemType === 'upload_video') {
+        openDocument(true);
       }
     }, 500);
   };
@@ -120,6 +127,12 @@ const Attachment = ({ conversationId, eva: { style, theme }, onSelectAttachment 
           text="Photo Library"
           iconName="image-outline"
           itemType="upload_gallery"
+          onPressItem={onPressItem}
+        />
+        <AttachmentActionItem
+          text="Video Library"
+          iconName="video-outline"
+          itemType="upload_video"
           onPressItem={onPressItem}
         />
         <AttachmentActionItem

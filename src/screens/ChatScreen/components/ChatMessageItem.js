@@ -414,6 +414,7 @@ const ChatMessageItemComponent = ({
           message={message}
           type={type}
           showAttachment={showAttachment}
+          created_at={created_at}
         />
 
         <View style={style.dateView}>

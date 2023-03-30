@@ -20,6 +20,7 @@ import {
   selectors as conversationSelectors,
   selectMessagesLoading,
   selectAllMessagesFetched,
+  selectConversationToggleStatus,
 } from 'reducer/conversationSlice';
 import conversationActions from 'reducer/conversationSlice.action';
 const propTypes = {
@@ -42,6 +43,7 @@ const ChatScreenComponent = ({ eva: { style }, navigation, route }) => {
 
   const isFetching = useSelector(selectMessagesLoading);
   const isAllMessagesFetched = useSelector(selectAllMessagesFetched);
+  const conversationToggleStatus = useSelector(selectConversationToggleStatus);
 
   const {
     conversationId,
@@ -88,6 +90,9 @@ const ChatScreenComponent = ({ eva: { style }, navigation, route }) => {
     dispatch(conversationActions.fetchConversation({ conversationId }));
   }, [conversationId, dispatch]);
 
+  useEffect(() => {
+    if (!conversationToggleStatus) loadConversation();
+  }, [conversationToggleStatus, loadConversation]);
   const loadMessages = useCallback(async () => {
     // Fetch conversation if not present
     if (!conversation) {

@@ -62,6 +62,7 @@ const ConversationScreen = () => {
   }, [dispatch, initActionCable, initAnalytics, initPushNotifications, checkAppVersion]);
 
   const initPushNotifications = useCallback(async () => {
+    console.warn('initPushNotifications');
     dispatch(notificationActions.saveDeviceDetails());
     clearAllDeliveredNotifications();
   }, [dispatch]);
@@ -75,8 +76,10 @@ const ConversationScreen = () => {
   }, [dispatch, user, installationUrl]);
 
   const initActionCable = useCallback(async () => {
+    console.warn(webSocketUrl, '===webSocketUrl');
     const pubSubToken = await getPubSubToken();
     const { accountId, userId } = await getUserDetails();
+    console.warn({ pubSubToken, webSocketUrl, accountId, userId });
     ActionCable.init({ pubSubToken, webSocketUrl, accountId, userId });
   }, [webSocketUrl]);
 

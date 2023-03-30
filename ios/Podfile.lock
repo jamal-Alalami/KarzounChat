@@ -377,11 +377,20 @@ PODS:
     - React-Core
   - react-native-netinfo (5.9.10):
     - React-Core
+  - react-native-opus-decode (0.22.9):
+    - React-Core
   - react-native-render-html (6.3.4):
     - React-Core
   - react-native-safari-view (1.0.0):
     - React
   - react-native-safe-area-context (3.2.0):
+    - React-Core
+  - react-native-slider (4.4.2):
+    - React-Core
+  - react-native-video (5.2.1):
+    - React-Core
+    - react-native-video/Video (= 5.2.1)
+  - react-native-video/Video (5.2.1):
     - React-Core
   - react-native-webview (11.26.0):
     - React-Core
@@ -453,6 +462,8 @@ PODS:
     - React-perflogger (= 0.70.6)
   - ReactNativeExceptionHandler (2.10.10):
     - React-Core
+  - RNAudioRecorderPlayer (3.5.3):
+    - React-Core
   - RNBootSplash (4.4.1):
     - React-Core
   - RNCAsyncStorage (1.17.11):
@@ -476,6 +487,8 @@ PODS:
     - React-Core
     - RNFBApp
   - RNFlashList (1.4.0):
+    - React-Core
+  - RNFS (2.20.0):
     - React-Core
   - RNGestureHandler (1.10.3):
     - React-Core
@@ -580,9 +593,12 @@ DEPENDENCIES:
   - react-native-flipper (from `../node_modules/react-native-flipper`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
+  - react-native-opus-decode (from `../node_modules/react-native-opus-decode`)
   - react-native-render-html (from `../node_modules/react-native-render-html`)
   - react-native-safari-view (from `../node_modules/react-native-safari-view`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - "react-native-slider (from `../node_modules/@react-native-community/slider`)"
+  - react-native-video (from `../node_modules/react-native-video`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -597,6 +613,7 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeExceptionHandler (from `../node_modules/react-native-exception-handler`)
+  - RNAudioRecorderPlayer (from `../node_modules/react-native-audio-recorder-player`)
   - RNBootSplash (from `../node_modules/react-native-bootsplash`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCClipboard (from `../node_modules/@react-native-clipboard/clipboard`)"
@@ -606,6 +623,7 @@ DEPENDENCIES:
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
   - "RNFlashList (from `../node_modules/@shopify/flash-list`)"
+  - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -697,12 +715,18 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-image-picker"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
+  react-native-opus-decode:
+    :path: "../node_modules/react-native-opus-decode"
   react-native-render-html:
     :path: "../node_modules/react-native-render-html"
   react-native-safari-view:
     :path: "../node_modules/react-native-safari-view"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-slider:
+    :path: "../node_modules/@react-native-community/slider"
+  react-native-video:
+    :path: "../node_modules/react-native-video"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
   React-perflogger:
@@ -731,6 +755,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   ReactNativeExceptionHandler:
     :path: "../node_modules/react-native-exception-handler"
+  RNAudioRecorderPlayer:
+    :path: "../node_modules/react-native-audio-recorder-player"
   RNBootSplash:
     :path: "../node_modules/react-native-bootsplash"
   RNCAsyncStorage:
@@ -749,6 +775,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/messaging"
   RNFlashList:
     :path: "../node_modules/@shopify/flash-list"
+  RNFS:
+    :path: "../node_modules/react-native-fs"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNReanimated:
@@ -814,9 +842,12 @@ SPEC CHECKSUMS:
   react-native-flipper: 7eeb9b59b667dd0619372c7349cf7c78032d1de2
   react-native-image-picker: 31971f6184e7c1dcb4fc1f122e1ba2c3fb11ef1e
   react-native-netinfo: 30fb89fa913c342be82a887b56e96be6d71201dd
+  react-native-opus-decode: b370539e81d1769d9890679dea3d51db2d6ec23c
   react-native-render-html: 984dfe2294163d04bf5fe25d7c9f122e60e05ebe
   react-native-safari-view: 955d7160d159241b8e9395d12d10ea0ef863dcdd
   react-native-safe-area-context: f0906bf8bc9835ac9a9d3f97e8bde2a997d8da79
+  react-native-slider: 33b8d190b59d4f67a541061bb91775d53d617d9d
+  react-native-video: c26780b224543c62d5e1b2a7244a5cd1b50e8253
   react-native-webview: 994b9f8fbb504d6314dc40d83f94f27c6831b3bf
   React-perflogger: 8c79399b0500a30ee8152d0f9f11beae7fc36595
   React-RCTActionSheet: 7316773acabb374642b926c19aef1c115df5c466
@@ -831,6 +862,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 15437b576139df27635400de0599d9844f1ab817
   ReactCommon: 349be31adeecffc7986a0de875d7fb0dcf4e251c
   ReactNativeExceptionHandler: b11ff67c78802b2f62eed0e10e75cb1ef7947c60
+  RNAudioRecorderPlayer: 6638283925b46808310c9fdf803ebabc3abdbadc
   RNBootSplash: 4f968c1e098c7ec97939ace039f735e3d335bd4b
   RNCAsyncStorage: 8616bd5a58af409453ea4e1b246521bb76578d60
   RNCClipboard: 2834e1c4af68697089cdd455ee4a4cdd198fa7dd
@@ -840,6 +872,7 @@ SPEC CHECKSUMS:
   RNFBApp: 9295dac8a4e8857918bcff90328b197807ee0dc1
   RNFBMessaging: 1a84a46789e1ee9820d70839683faff890a22411
   RNFlashList: 399bf6a0db68f594ad2c86aaff3ea39564f39f8a
+  RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNReanimated: ce445c233a6ff5600223484a88ad5704945d972a
   RNScreens: 21b73c94c9117e1110a79ee0ee80c93ccefed8ce

@@ -17,7 +17,8 @@ export const actions = {
       try {
         const installationUrl = extractDomain({ url });
         const INSTALLATION_URL = `${URL_TYPE}${installationUrl}/`;
-        const WEB_SOCKET_URL = `wss://${url}/cable`;
+        const WEB_SOCKET_URL = `wss://${installationUrl}/cable`;
+        console.warn('WEB_SOCKET_URL', WEB_SOCKET_URL);
         await axios.get(`${INSTALLATION_URL}api`);
         RootNavigation.navigate('Login');
         return {
@@ -62,12 +63,12 @@ export const actions = {
 export const settingsSlice = createSlice({
   name: 'settings',
   initialState: settingAdapter.getInitialState({
-    baseUrl: '',
+    baseUrl: 'app.karzoun.chat',
     installationUrl: null,
     isLocaleSet: false,
     isSettingUrl: false,
     isUpdating: false,
-    isUrlSet: false,
+    isUrlSet: true,
     localeValue: 'en',
     notification: {},
     webSocketUrl: null,

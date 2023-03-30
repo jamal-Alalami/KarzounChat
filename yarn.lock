@@ -2184,6 +2184,11 @@
   dependencies:
     invariant "^2.2.4"
 
+"@react-native-community/slider@^4.4.2":
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/@react-native-community/slider/-/slider-4.4.2.tgz#1fea0eb3ae31841fe87bd6c4fc67569066e9cf4b"
+  integrity sha512-D9bv+3Vd2gairAhnRPAghwccgEmoM7g562pm8i4qB3Esrms5mggF81G3UvCyc0w3jjtFHh8dpQkfEoKiP0NW/Q==
+
 "@react-native-firebase/app@^16.5.0":
   version "16.5.0"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-16.5.0.tgz#b8676ed7237b97f676b8d3a9d151dd83c2c01e40"
@@ -3203,10 +3208,10 @@
   dependencies:
     eslint-visitor-keys "^1.1.0"
 
-"@ui-kitten/components@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@ui-kitten/components/-/components-5.0.0.tgz#6a41719220f1c98afc3721abc19659f7e3a129ed"
-  integrity sha512-XYcXYju7yPDGvg7TAxfTSlxWbxGL/p2R1Y9rSroIpylnSlow7KGlfq0R1MOxeKCf3tZDxSNvuVzaSlFgvJK7fQ==
+"@ui-kitten/components@^5.1.2":
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/@ui-kitten/components/-/components-5.1.2.tgz#18b6aba8ed67b0b893f0ec3f40daf5e698676811"
+  integrity sha512-J1Gd53+2qngktLSKot9aT+LGhUt05uGE3ouEiY6FsxUZdexlzcQVhp5rRasExUSAYNcN5J7/XSNEPNB9qX0v1g==
   dependencies:
     "@eva-design/dss" "^2.0.0"
     "@eva-design/processor" "^2.0.0"
@@ -3214,17 +3219,17 @@
     hoist-non-react-statics "^3.2.1"
     lodash.merge "^4.6.1"
 
-"@ui-kitten/eva-icons@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@ui-kitten/eva-icons/-/eva-icons-5.0.0.tgz#b8ab2fea3dafcb9f914534ef66a5dfd1badfeb1d"
-  integrity sha512-Iae3FtnNQKC0PnRnFDUpaCFhvUFaN+NkRxag6LstEjNqAMcVnsQbPTqPQFx18j920Z5S7f5/oZqaJ8NxZtPaNA==
+"@ui-kitten/eva-icons@^5.1.2":
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/@ui-kitten/eva-icons/-/eva-icons-5.1.2.tgz#f128c4baf95d84a13067f02f0bdcb8df61178a9f"
+  integrity sha512-cUU6P469TgZ/vF9BrpBXFyTHttfXu/pHZiITfGw96BbaPn5GtBFSnorRtaOyqU4k2+pyzOA7rohqlbRY3jgAdA==
   dependencies:
     react-native-eva-icons "^1.3.1"
 
-"@ui-kitten/metro-config@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@ui-kitten/metro-config/-/metro-config-5.0.0.tgz#28d60d781def017e6def3b96ce0d1594d44efb2e"
-  integrity sha512-ImnpqdzNzZOgOHbrK27RgObzhMKT5iw2ZSqAZmEHUaVQexOwHlA1yBCHI2TnhuwtqiRsgYOW0zQywr05CnCPpQ==
+"@ui-kitten/metro-config@^5.1.2":
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/@ui-kitten/metro-config/-/metro-config-5.1.2.tgz#c678d11230ec93756859a7359a00086fd50ab43d"
+  integrity sha512-PV+S23ocybRqDrD7kjEqBfvnfE5h+53zFivoI7m/Zln+cTZPqxDaWZZvadW1IlyHEQe5oPA/QdWyuP8ccH1kaA==
 
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
@@ -4286,6 +4291,11 @@ balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
+
+base-64@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/base-64/-/base-64-0.1.0.tgz#780a99c84e7d600260361511c4877613bf24f6bb"
+  integrity sha512-Y5gU45svrR5tI2Vt/X9GPd3L0HNIKzGu202EjxrXMpuc2V2CiKgemAbUUsqYmZJvPtCXoUKjNZwBJzsNScUbXA==
 
 base64-js@^1.0.2, base64-js@^1.1.2, base64-js@^1.2.3, base64-js@^1.3.1, base64-js@^1.5.1:
   version "1.5.1"
@@ -5724,7 +5734,7 @@ depd@2.0.0:
   resolved "https://registry.yarnpkg.com/depd/-/depd-2.0.0.tgz#b696163cc757560d09cf22cc8fad1571b79e76df"
   integrity sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==
 
-deprecated-react-native-prop-types@^2.3.0:
+deprecated-react-native-prop-types@^2.2.0, deprecated-react-native-prop-types@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/deprecated-react-native-prop-types/-/deprecated-react-native-prop-types-2.3.0.tgz#c10c6ee75ff2b6de94bb127f142b814e6e08d9ab"
   integrity sha512-pWD0voFtNYxrVqvBMYf5gq3NA2GCpfodS1yNynTPc93AYA/KEMGeWDqqeUB6R2Z9ZofVhks2aeJXiuQqKNpesA==
@@ -5934,6 +5944,11 @@ domutils@^3.0.1:
     domelementtype "^2.3.0"
     domhandler "^5.0.1"
 
+dooboolab-welcome@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/dooboolab-welcome/-/dooboolab-welcome-1.3.2.tgz#4928595312f0429b4ea1b485ba8767bae6acdab7"
+  integrity sha512-2NbMaIIURElxEf/UAoVUFlXrO+7n/FRhLCiQlk4fkbGRh9cJ3/f8VEMPveR9m4Ug2l2Zey+UCXjd6EcBqHJ5bw==
+
 dot-case@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/dot-case/-/dot-case-3.0.4.tgz#9b2b670d00a431667a8a75ba29cd1b98809ce751"
@@ -6027,6 +6042,11 @@ elliptic@^6.5.3:
     inherits "^2.0.4"
     minimalistic-assert "^1.0.1"
     minimalistic-crypto-utils "^1.0.1"
+
+eme-encryption-scheme-polyfill@^2.0.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/eme-encryption-scheme-polyfill/-/eme-encryption-scheme-polyfill-2.1.1.tgz#91c823ed584e8ec5a9f03a6a676def8f80c57a4c"
+  integrity sha512-njD17wcUrbqCj0ArpLu5zWXtaiupHb/2fIUQGdInf83GlI+Q6mmqaPGLdrke4savKAu15J/z1Tg/ivDgl14g0g==
 
 emittery@^0.7.1:
   version "0.7.2"
@@ -9106,6 +9126,11 @@ jsonfile@^6.0.1:
     array-includes "^3.1.5"
     object.assign "^4.1.3"
 
+keymirror@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/keymirror/-/keymirror-0.1.1.tgz#918889ea13f8d0a42e7c557250eee713adc95c35"
+  integrity sha512-vIkZAFWoDijgQT/Nvl2AHCMmnegN2ehgTPYuyy2hWQkQSntI0S7ESYqdLkoSe1HyEBFHHkCgSIvVdSEiWwKvCg==
+
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
@@ -11523,6 +11548,14 @@ react-native-animatable@1.3.3, react-native-animatable@^1.3.3:
   dependencies:
     prop-types "^15.7.2"
 
+react-native-audio-recorder-player@^3.5.1, react-native-audio-recorder-player@^3.5.3:
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/react-native-audio-recorder-player/-/react-native-audio-recorder-player-3.5.3.tgz#1ca601b7068c3e4b89c15ce47777a33d2125eb25"
+  integrity sha512-3z/E5V09BelbGFTdUfEUD8OXHePKubvc3KDwQlx6981KA1kJTkoOcl8uwUMhWytmB7N+Djv4R9DqEx5aLhXaRg==
+  dependencies:
+    dooboolab-welcome "^1.3.2"
+    react-native-audio-recorder-player "^3.5.1"
+
 react-native-autoheight-webview@^1.6.5:
   version "1.6.5"
   resolved "https://registry.yarnpkg.com/react-native-autoheight-webview/-/react-native-autoheight-webview-1.6.5.tgz#ff87e8971a5f8ba8aa8c0abf1e439ab88468adb1"
@@ -11610,6 +11643,14 @@ react-native-flipper@^0.162.0:
   resolved "https://registry.yarnpkg.com/react-native-flipper/-/react-native-flipper-0.162.0.tgz#9919adb743dae50a80d914eaa3a53eb33eaf39ec"
   integrity sha512-htXhzHDKWkMaBivc+SLTxqT1GkJxR2rrXobXlAhFYrvaQ6ws1KA6peqQssEiPSrXQJ2Z2oRXQ+yrlPKaBC/Hjg==
 
+react-native-fs@^2.19.0, react-native-fs@^2.20.0:
+  version "2.20.0"
+  resolved "https://registry.yarnpkg.com/react-native-fs/-/react-native-fs-2.20.0.tgz#05a9362b473bfc0910772c0acbb73a78dbc810f6"
+  integrity sha512-VkTBzs7fIDUiy/XajOSNk0XazFE9l+QlMAce7lGuebZcag5CnjszB+u4BdqzwaQOdcYb5wsJIsqq4kxInIRpJQ==
+  dependencies:
+    base-64 "^0.1.0"
+    utf8 "^3.0.0"
+
 react-native-gesture-handler@^1.9.0:
   version "1.10.3"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.10.3.tgz#942bbf2963bbf49fa79593600ee9d7b5dab3cfc0"
@@ -11687,6 +11728,13 @@ react-native-modal@^13.0.1:
     prop-types "^15.6.2"
     react-native-animatable "1.3.3"
 
+react-native-opus-decode@^0.22.9:
+  version "0.22.9"
+  resolved "https://registry.yarnpkg.com/react-native-opus-decode/-/react-native-opus-decode-0.22.9.tgz#ac2e23fd35e56551f8a257b74216e4ee0f74fb35"
+  integrity sha512-uxir4/nxlp0s5fpS7RC7CU9Aj3t5p7RhPpfUljYHlnKOSfR2seDh+zDJF29ZNiTZzAFp5QvZ1Xqb+DzWWDLTBg==
+  dependencies:
+    react-native-fs "^2.19.0"
+
 react-native-reanimated@^2.12.0:
   version "2.13.0"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.13.0.tgz#d64c1386626822d4dc22094b4efe028ff2c49cc9"
@@ -11759,6 +11807,16 @@ react-native-swipe-gestures@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/react-native-swipe-gestures/-/react-native-swipe-gestures-1.0.5.tgz#a172cb0f3e7478ccd681fd36b8bfbcdd098bde7c"
   integrity sha512-Ns7Bn9H/Tyw278+5SQx9oAblDZ7JixyzeOczcBK8dipQk2pD7Djkcfnf1nB/8RErAmMLL9iXgW0QHqiII8AhKw==
+
+react-native-video@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-video/-/react-native-video-5.2.1.tgz#a17e856759d7e17eee9cbd9df0d05ba22e88d457"
+  integrity sha512-aJlr9MeTuQ0LpZ4n+EC9RvhoKeiPbLtI2Rxy8u7zo/wzGevbRpWHSBj9xZ5YDBXnAVXzuqyNIkGhdw7bfdIBZw==
+  dependencies:
+    deprecated-react-native-prop-types "^2.2.0"
+    keymirror "^0.1.1"
+    prop-types "^15.7.2"
+    shaka-player "^2.5.9"
 
 react-native-webview@^11.3.1:
   version "11.26.0"
@@ -12592,6 +12650,13 @@ sha.js@^2.4.0, sha.js@^2.4.8:
   dependencies:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
+
+shaka-player@^2.5.9:
+  version "2.5.23"
+  resolved "https://registry.yarnpkg.com/shaka-player/-/shaka-player-2.5.23.tgz#db92d1c6cf2314f0180a2cec11b0e2f2560336f5"
+  integrity sha512-3MC9k0OXJGw8AZ4n/ZNCZS2yDxx+3as5KgH6Tx4Q5TRboTBBCu6dYPI5vp1DxKeyU12MBN1Zcbs7AKzXv2EnCg==
+  dependencies:
+    eme-encryption-scheme-polyfill "^2.0.1"
 
 shallow-clone@^1.0.0:
   version "1.0.0"
@@ -13870,6 +13935,11 @@ utf8-byte-length@^1.0.1:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/utf8-byte-length/-/utf8-byte-length-1.0.4.tgz#f45f150c4c66eee968186505ab93fcbb8ad6bf61"
   integrity sha512-4+wkEYLBbWxqTahEsWrhxepcoVOJ+1z5PGIjPZxRkytcdSUaNjIjBM7Xn8E+pdSuV7SzvWovBFA54FO0JSoqhA==
+
+utf8@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/utf8/-/utf8-3.0.0.tgz#f052eed1364d696e769ef058b183df88c87f69d1"
+  integrity sha512-E8VjFIQ/TyQgp+TZfS6l8yp/xWppSAHzidGiRrqe4bK4XP9pTRyKFgGJpO3SN7zdX4DeomTrwaseCHovfpFcqQ==
 
 utif@^2.0.1:
   version "2.0.1"

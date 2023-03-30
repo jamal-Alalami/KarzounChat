@@ -84,14 +84,6 @@ const LoginScreenComponent = ({ navigation, eva }) => {
         <View style={style.logoView}>
           <Image style={style.logo} source={images.login} />
         </View>
-        <View style={style.titleView}>
-          <CustomText style={style.titleText}>{i18n.t('LOGIN.TITLE')}</CustomText>
-          {baseUrl ? (
-            <CustomText appearance="hint" style={style.subTitleText}>
-              {i18n.t('LOGIN.DESCRIPTION', { baseUrl })}
-            </CustomText>
-          ) : null}
-        </View>
 
         <View style={style.contentView}>
           <View style={style.formView}>
@@ -172,10 +164,6 @@ const LoginScreenComponent = ({ navigation, eva }) => {
                   <Text style={style.textStyle}>{'   |   '}</Text>
                 </>
               )}
-
-              <TouchableOpacity onPress={() => navigate('ConfigureURL')}>
-                <CustomText style={style.textStyle}>{i18n.t('LOGIN.CHANGE_URL')}</CustomText>
-              </TouchableOpacity>
             </View>
             <View style={style.accountView}>
               <TouchableOpacity onPress={() => navigate('Language')}>

@@ -574,8 +574,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = KarzounChat/KarzounChat.entitlements;
-				CURRENT_PROJECT_VERSION = 247;
-				DEVELOPMENT_TEAM = L7YLMN4634;
+				CURRENT_PROJECT_VERSION = 6;
+				DEVELOPMENT_TEAM = 35TY8UJ88S;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = KarzounChat/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = KarzounChat;
@@ -583,13 +583,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 1.1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.chatwoot.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.karzoun.karzounchat;
 				PRODUCT_NAME = KarzounChat;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -608,21 +608,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = KarzounChat/KarzounChat.entitlements;
-				CURRENT_PROJECT_VERSION = 247;
-				DEVELOPMENT_TEAM = L7YLMN4634;
+				CURRENT_PROJECT_VERSION = 6;
+				DEVELOPMENT_TEAM = 35TY8UJ88S;
 				INFOPLIST_FILE = KarzounChat/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = KarzounChat;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 1.1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.chatwoot.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.karzoun.karzounchat;
 				PRODUCT_NAME = KarzounChat;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

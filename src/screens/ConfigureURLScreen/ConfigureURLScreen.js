@@ -54,7 +54,7 @@ const ConfigureURLScreenComponent = ({ eva }) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      url: baseUrl ? baseUrl : appName === 'Chatwoot' ? 'app.chatwoot.com' : '',
+      url: baseUrl ? baseUrl : appName === 'Chatwoot' ? 'app.chatwoot.com' : 'app.karzoun.chat',
     },
   });
 

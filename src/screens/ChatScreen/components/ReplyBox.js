@@ -1,5 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { View, Dimensions, TextInput, Text, TouchableOpacity } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  View,
+  Dimensions,
+  TextInput,
+  Text,
+  TouchableOpacity,
+  Animated,
+  Platform,
+  PermissionsAndroid,
+} from 'react-native';
 import { MentionInput } from 'react-native-controlled-mentions';
 import { withStyles, Icon } from '@ui-kitten/components';
 import PropTypes from 'prop-types';
@@ -16,6 +25,9 @@ import { CONVERSATION_EVENTS } from 'constants/analyticsEvents';
 import conversationActions from 'reducer/conversationSlice.action';
 import CannedResponsesContainer from '../containers/CannedResponsesContainer';
 import { inboxAgentSelectors, actions as inboxAgentActions } from 'reducer/inboxAgentsSlice';
+import AudioRecorderPlayer from 'react-native-audio-recorder-player';
+
+import RNFS from 'react-native-fs';
 
 const propTypes = {
   conversationId: PropTypes.number,
@@ -25,6 +37,7 @@ const propTypes = {
     style: PropTypes.object,
   }).isRequired,
 };
+const audioRecorderPlayer = new AudioRecorderPlayer();
 
 const ReplyBox = ({ eva: { theme, style }, conversationId, conversationDetails }) => {
   const [isPrivate, setPrivateMode] = useState(false);
@@ -37,6 +50,10 @@ const ReplyBox = ({ eva: { theme, style }, conversationId, conversationDetails }
   const [attachmentDetails, setAttachmentDetails] = useState(null);
   const inboxId = conversationDetails?.inbox_id;
   const dispatch = useDispatch();
+
+  const [recordSecs, setRecordSecs] = useState(0);
+  const recordedFileName = useRef();
+  const scale = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
     if (inboxId) {
@@ -92,10 +109,14 @@ const ReplyBox = ({ eva: { theme, style }, conversationId, conversationDetails }
   const onSelectAttachment = ({ attachment }) => {
     AnalyticsHelper.track(CONVERSATION_EVENTS.SELECTED_ATTACHMENT);
     const { fileSize } = attachment;
-    if (findFileSize(fileSize) <= MAXIMUM_FILE_UPLOAD_SIZE) {
-      setAttachmentDetails(attachment);
+    if (fileSize) {
+      if (findFileSize(fileSize) <= MAXIMUM_FILE_UPLOAD_SIZE) {
+        setAttachmentDetails(attachment);
+      } else {
+        showToast({ message: i18n.t('CONVERSATION.FILE_SIZE_LIMIT') });
+      }
     } else {
-      showToast({ message: i18n.t('CONVERSATION.FILE_SIZE_LIMIT') });
+      setAttachmentDetails(attachment);
     }
   };
 
@@ -170,6 +191,82 @@ const ReplyBox = ({ eva: { theme, style }, conversationId, conversationDetails }
     );
   };
 
+  const startRecorderingHandler = async () => {
+    try {
+      recordedFileName.current = Platform.select({
+        ios: `${Date.now()}.aac`,
+        android: `${Date.now()}.aac`,
+      });
+      Animated.spring(scale, { toValue: 1.5, useNativeDriver: true }).start();
+      const path = Platform.select({
+        android: `${RNFS.CachesDirectoryPath}/${recordedFileName.current}`,
+        ios: `${recordedFileName.current}`,
+      });
+      if (Platform.OS === 'android') {
+        const grants = await PermissionsAndroid.requestMultiple([
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+          PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+        ]);
+        // console.log('write external stroage', grants);
+        if (
+          grants['android.permission.WRITE_EXTERNAL_STORAGE'] ===
+            PermissionsAndroid.RESULTS.GRANTED &&
+          grants['android.permission.READ_EXTERNAL_STORAGE'] ===
+            PermissionsAndroid.RESULTS.GRANTED &&
+          grants['android.permission.RECORD_AUDIO'] === PermissionsAndroid.RESULTS.GRANTED
+        ) {
+          const result = await audioRecorderPlayer.startRecorder(path);
+          audioRecorderPlayer.addRecordBackListener(e => {
+            setRecordSecs(e.currentPosition);
+          });
+          // console.log(result);
+        } else {
+          console.log('All required permissions not granted');
+          showToast({
+            message: 'permissions required to enable audio recording',
+          });
+        }
+      } else {
+        const result = await audioRecorderPlayer.startRecorder(path);
+        audioRecorderPlayer.addRecordBackListener(e => {
+          setRecordSecs(e.currentPosition);
+        });
+        // console.log(result);
+      }
+    } catch (error) {
+      console.log('start recording error', error);
+    }
+  };
+  const stopRecordingHandler = async () => {
+    try {
+      if (recordSecs > 0) {
+        Animated.spring(scale, { toValue: 1, useNativeDriver: true }).start();
+        const result = await audioRecorderPlayer.stopRecorder();
+        audioRecorderPlayer.removeRecordBackListener();
+        setRecordSecs(0);
+        onSelectAttachment({
+          attachment: {
+            fileName: recordedFileName.current,
+            // type: account_id == 1 ? 'video/mp4' : 'audio/mp4',
+            type: `audio/${Platform.select({
+              ios: `aac`,
+              android: `aac`,
+            })}`,
+            uri: result,
+          },
+        });
+      }
+      // await audioRecorderPlayer.stopPlayer()
+      // await audioRecorderPlayer.startPlayer(result)
+      // console.log(result);
+      // onNewMessageAdd({fileName:recordedFileName.current, type: "audio/wav", uri:result})
+      // onNewMessageAdd({fileName:recordedFileName.current, type: "audio/mp4", uri:result})
+    } catch (error) {
+      console.warn('stop recording error', error);
+    }
+  };
+
   return (
     <React.Fragment>
       {attachmentDetails && (
@@ -240,6 +337,14 @@ const ReplyBox = ({ eva: { theme, style }, conversationId, conversationDetails }
         <View style={style.buttonViews}>
           <View style={style.attachIconView}>
             <Attachment conversationId={conversationId} onSelectAttachment={onSelectAttachment} />
+            {/* <Animated.View style={{ transform: [{ scale }] }}>
+              <TouchableOpacity
+                style={{ marginHorizontal: 12 }}
+                onLongPress={startRecorderingHandler}
+                onPressOut={stopRecordingHandler}>
+                <Icon name="mic-outline" fill={theme['text-hint-color']} width={24} height={24} />
+              </TouchableOpacity>
+            </Animated.View> */}
             <View style={style.privateNoteView}>
               <Icon
                 name="lock-outline"

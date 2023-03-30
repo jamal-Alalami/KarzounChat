@@ -47,11 +47,11 @@ class BaseActionCableConnector {
     }
   };
   handleConnected = () => {
-    // console.log('Connected to ActionCable');
+    console.warn('Connected to ActionCable');
   };
   // TODO: handle disconnected
   handleDisconnected = () => {
-    // console.log('Disconnected from ActionCable');
+    console.warn('Disconnected from ActionCable');
   };
 }
 

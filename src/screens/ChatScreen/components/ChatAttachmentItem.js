@@ -1,23 +1,32 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, View, Dimensions, Image } from 'react-native';
+import { TouchableOpacity, View, Dimensions, Image, Text, Linking } from 'react-native';
 import PropTypes from 'prop-types';
 import { withStyles, Icon } from '@ui-kitten/components';
-
+import RecordSlider from './RecordSlider';
 const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
 
 import ImageLoader from 'components/ImageLoader';
+import { messageStamp } from 'helpers/TimeHelper';
 import CustomText from 'components/Text';
+import PlayVideo from './PlayVideo';
 import i18n from 'i18n';
+
+const LockIcon = style => {
+  return <Icon {...style} name="lock" />;
+};
 
 const styles = theme => ({
   fileView: {
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     maxWidth: Dimensions.get('window').width - 40,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
   },
   fileViewRight: {
+    backgroundColor: theme['color-primary-default'],
     borderBottomLeftRadius: 8,
     borderBottomRightRadius: 4,
     borderTopLeftRadius: 8,
@@ -29,8 +38,10 @@ const styles = theme => ({
     backgroundColor: theme['background-basic-color-1'],
     borderBottomLeftRadius: 4,
     borderBottomRightRadius: 8,
+    borderColor: theme['color-border'],
     borderTopLeftRadius: 4,
     borderTopRightRadius: 8,
+    borderWidth: 1,
     paddingTop: 8,
     paddingBottom: 8,
   },
@@ -38,8 +49,10 @@ const styles = theme => ({
     backgroundColor: theme['background-basic-color-1'],
     borderBottomLeftRadius: 4,
     borderBottomRightRadius: 8,
+    borderColor: theme['color-border'],
     borderTopLeftRadius: 4,
     borderTopRightRadius: 8,
+    borderWidth: 1,
     paddingTop: 8,
     paddingBottom: 8,
   },
@@ -54,6 +67,8 @@ const styles = theme => ({
   },
   privateMessageContainer: {
     backgroundColor: theme['color-background-private-light'],
+    borderColor: theme['color-border-activity'],
+    borderWidth: 1,
     color: theme['text-basic-color'],
     paddingTop: 8,
     paddingBottom: 8,
@@ -81,27 +96,29 @@ const styles = theme => ({
   fileAttachmentContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
   },
   attachmentIconView: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingRight: 8,
+    justifyContent: 'center',
+    paddingRight: 16,
   },
   fileAttachmentView: {
     flexDirection: 'row',
   },
   attachmentTextView: {
-    alignItems: 'flex-start',
+    alignItems: 'center',
     justifyContent: 'center',
   },
+
   filenameRightText: {
     color: theme['color-basic-100'],
     fontSize: theme['font-size-small'],
     fontWeight: theme['font-medium'],
     textAlign: 'left',
   },
+
   filenameLeftText: {
     color: theme['color-message-left'],
     fontSize: theme['font-size-small'],
@@ -115,20 +132,54 @@ const styles = theme => ({
     color: theme['color-primary-default'],
   },
   downloadRightText: {
-    color: theme['color-basic-100'],
+    color: theme['color-background-message'],
     fontSize: theme['font-size-extra-small'],
     fontWeight: theme['font-medium'],
     textAlign: 'left',
+    alignSelf: 'stretch',
     textDecorationLine: 'underline',
     paddingTop: 2,
   },
   downloadLeftText: {
-    color: theme['color-primary-default'],
+    color: '#005fb8',
     fontSize: theme['font-size-extra-small'],
     fontWeight: theme['font-medium'],
     textAlign: 'left',
+    alignSelf: 'stretch',
     textDecorationLine: 'underline',
     paddingTop: 2,
+  },
+  attachmentText: {
+    fontSize: theme['text-primary-size'],
+    fontWeight: theme['font-medium'],
+    color: 'white',
+    paddingBottom: 4,
+    paddingLeft: 8,
+  },
+  attachmentPrivateText: {
+    fontSize: theme['text-primary-size'],
+    fontWeight: theme['font-medium'],
+    color: theme['text-basic-color'],
+    paddingBottom: 4,
+    paddingLeft: 8,
+  },
+  dateView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 4,
+  },
+  dateRight: {
+    color: theme['color-background-message'],
+    fontSize: theme['font-size-extra-extra-small'],
+    paddingTop: 4,
+  },
+  dateLeft: {
+    color: theme['color-gray'],
+    fontSize: theme['font-size-extra-extra-small'],
+    paddingTop: 4,
+  },
+  iconView: {
+    paddingLeft: 8,
   },
   icon: {
     width: 16,
@@ -153,19 +204,22 @@ const propTypes = {
       data_url: PropTypes.string,
     }),
   ),
+  created_at: PropTypes.number,
 };
 
-const FileIcon = style => {
-  return <Icon {...style} name="file-text-outline" width={24} height={24} />;
+export const FileIcon = style => {
+  return <Icon {...style} name="play-circle-outline" width={24} height={24} />;
 };
 
 const ChatAttachmentItemComponent = ({
   type,
-  attachments,
   showAttachment,
+  attachments,
+  created_at,
   message,
   eva: { style, theme },
 }) => {
+  console.warn(created_at, '===created_at');
   const [imageLoading, onLoadImage] = useState(false);
   const isPrivate = message.private;
 
@@ -194,6 +248,7 @@ const ChatAttachmentItemComponent = ({
       const fileName = dataUrl ? dataUrl.split('/').pop() : '';
       const fileNameWithOutExt = fileName.split('.').shift();
       const fileTypeFromName = fileName.split('.').pop();
+      const fileExt = dataUrl?.split('.').reverse()[0];
       return (
         <React.Fragment key={index}>
           {fileType === 'image' ? (
@@ -223,25 +278,44 @@ const ChatAttachmentItemComponent = ({
               ]}>
               <View style={style.fileAttachmentContainer}>
                 <View style={style.fileAttachmentView}>
-                  <View style={style.attachmentIconView}>
-                    <FileIcon
-                      fill={isPrivate ? theme['color-primary-default'] : attachmentIconColor}
+                  {fileType == 'audio' || fileExt === 'mp3' || fileExt === 'ogg' ? (
+                    <RecordSlider
+                      url={dataUrl}
+                      message={attachment}
+                      theme={theme}
+                      type={type}
+                      created_at={created_at}
                     />
-                  </View>
-                  <View style={style.attachmentTextView}>
-                    <CustomText style={attachmentContentStyle}>
-                      {fileName.length < 30
-                        ? `${fileName}`
-                        : `${fileNameWithOutExt.substr(
-                            fileName.length - 30,
-                          )}...${fileTypeFromName}`}
-                    </CustomText>
-                    <TouchableOpacity onPress={() => showAttachment({ type: 'file', dataUrl })}>
-                      <CustomText style={downloadAttachmentContentStyle}>
-                        {i18n.t('CONVERSATION.DOWNLOAD')}
-                      </CustomText>
-                    </TouchableOpacity>
-                  </View>
+                  ) : fileExt === 'mp4' || fileExt === 'mkv' || fileExt === 'flv' ? (
+                    <PlayVideo
+                      message={attachment}
+                      theme={theme}
+                      type={type}
+                      created_at={created_at}
+                    />
+                  ) : (
+                    <>
+                      <View style={style.attachmentIconView}>
+                        <FileIcon
+                          fill={isPrivate ? theme['color-primary-default'] : attachmentIconColor}
+                        />
+                      </View>
+                      <View style={style.attachmentTextView}>
+                        <CustomText style={attachmentContentStyle}>
+                          {fileName.length < 30
+                            ? `${fileName}`
+                            : `${fileNameWithOutExt.substr(
+                                fileName.length - 30,
+                              )}...${fileTypeFromName}`}
+                        </CustomText>
+                        <TouchableOpacity onPress={() => showAttachment({ type: 'file', dataUrl })}>
+                          <CustomText style={downloadAttachmentContentStyle}>
+                            {i18n.t('CONVERSATION.DOWNLOAD')}
+                          </CustomText>
+                        </TouchableOpacity>
+                      </View>
+                    </>
+                  )}
                 </View>
               </View>
             </View>
